@@ -1,0 +1,14 @@
+favicon: /path/
+header_img: /path/
+background_img: /path/
+
+weather:
+  zip1: 98029
+  zip2: 58563
+  zip3: 80247
+
+fin_stock:
+  ticker1: gtx
+  ticker2: tmus
+  ticker3: aapl
+
