@@ -11,3 +11,4 @@ This is my home's homepage. Its based on pure HTML and CSS.
 - Stocks
 - Header Image
 - RSS Feed on right sidebar
+- Display a Calendar and Taskbar
