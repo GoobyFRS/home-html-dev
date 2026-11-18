@@ -1,0 +1,65 @@
+{# Shared page shell. Child templates override the theme blocks only. #}
+<!DOCTYPE html>
+<html lang="en" class="{% block theme_class %}theme-standard{% endblock %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ meta.title }}</title>
+    {% if meta.favicon %}
+    <link rel="icon" href="{{ meta.favicon }}">
+    {% endif %}
+    <link rel="stylesheet" href="static/styles.css">
+    {# Image URLs live here (not in styles.css) so they resolve relative to this page. Paths are validated by generate.py. #}
+    <style>
+        {% if meta.header_img %}
+        .hero-photo { background-image: url('{{ meta.header_img }}'); }
+        {% endif %}
+        {% if meta.background_img %}
+        .page-background { background-image: linear-gradient(rgba(13, 17, 23, 0.84), rgba(13, 17, 23, 0.95)), url('{{ meta.background_img }}'); }
+        {% endif %}
+    </style>
+    {% block head_extra %}{% endblock %}
+    <script type="application/json" id="dashboard-config">{{ client_config | tojson }}</script>
+    {# A classic script works when the generated page is opened from disk. #}
+    <script src="static/main.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#dashboard-main">Skip to main content</a>
+    <div class="page-background" aria-hidden="true"></div>
+
+    <header class="hero">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-clock">
+                <p class="hero-weekday" id="clock-weekday"></p>
+                <time class="hero-time" id="clock-time"></time>
+                <p class="hero-date" id="clock-date"></p>
+            </div>
+            <div class="hero-side">
+                <h1 class="hero-title">{{ meta.title }}</h1>
+                {% block hero_greeting %}{% endblock %}
+            </div>
+        </div>
+    </header>
+
+    <main class="layout" id="dashboard-main" tabindex="-1">
+        <aside class="column column-left" aria-label="Weather, calendar and markets">
+            {% include "partials/weather.html" %}
+            {% include "partials/calendar.html" %}
+            {% include "partials/stocks.html" %}
+        </aside>
+
+        <section class="column column-center" aria-label="Map and server statistics">
+            {% include "partials/system_stats.html" %}
+            {% include "partials/map.html" %}
+        </section>
+
+        <aside class="column column-right" aria-label="Tasks and news">
+            {% include "partials/tasks.html" %}
+            {% include "partials/rss.html" %}
+        </aside>
+    </main>
+</body>
+</html>

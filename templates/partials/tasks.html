@@ -1,0 +1,24 @@
+<section class="card tasks-card" id="tasks" aria-labelledby="tasks-title">
+    <header class="card-header"><h2 class="card-title" id="tasks-title">Tasks</h2></header>
+    {% if meta.tasks %}
+    <ul class="task-list">
+        {% for task in meta.tasks %}
+        <li class="task">
+            <label>
+                <input type="checkbox" class="task-checkbox" data-task-key="{{ task.title }}"{% if task.done %} checked{% endif %}>
+                <span class="task-title">{{ task.title }}</span>
+            </label>
+            {% if task.due %}
+            <time class="task-due" datetime="{{ task.due }}" data-due="{{ task.due }}"
+                  data-due-label="{{ task.due_label }}"
+                  aria-label="Due {{ task.due_label }}">
+                {{ task.due }}<span class="task-overdue"> · Overdue</span>
+            </time>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted">No tasks. Add some under <code>tasks</code> in meta.yml.</p>
+    {% endif %}
+</section>

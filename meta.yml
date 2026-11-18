@@ -1,7 +1,20 @@
-favicon: /path/
-header_img: /path/
-background_img: /path/
+# Template in templates/: standard.html is the current complete theme.
+template: standard.html
+title: Home
 
+# favicon: /static/favicon.png
+header_img: /static/header.webp
+background_img: /static/hm_bg.webp
+
+# How long each data source is cached in the browser before it is fetched
+# again, in minutes. The page itself only checks what is due once a minute.
+refresh_minutes:
+  weather: 30
+  stocks: 60
+  rss: 30
+  linode: 30
+
+# Quote ZIP codes that start with 0.
 weather:
   zip1: 98029
   zip2: 58563
@@ -11,4 +24,23 @@ fin_stock:
   ticker1: gtx
   ticker2: tmus
   ticker3: aapl
+
+# RSS is pending the local FreshRSS instance; the News card shows "Pending".
+# rss:
+#   max_items: 8
+#   feeds:
+#     - http://freshrss.lan/i/?a=rss&user=you&token=...   # server must send CORS headers
+
+# Embedded in the middle of the page.
+map:
+  title: Map
+  url: http://192.168.0.47:8080
+
+# Tasks may be plain strings or {title, due: YYYY-MM-DD, done: true}.
+tasks:
+  - title: Renew vehicle registration
+    due: 2026-11-30
+  - title: Order Thanksgiving groceries
+    due: 2026-11-22
+  - Check Nextcloud backups
 

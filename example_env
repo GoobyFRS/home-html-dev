@@ -1,3 +1,2 @@
-NEWRELIC_API=your_key
 LINODE_RO_API=your_key
-CLOUDFLARE_API=your_key
+LINODE_COMPUTE_ID=your_key

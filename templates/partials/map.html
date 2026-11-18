@@ -1,0 +1,9 @@
+<section class="card map-card" aria-label="{{ meta.map_title }}">
+    {% if meta.map_url %}
+    <iframe class="map-frame" src="{{ meta.map_url }}" title="{{ meta.map_title }}"
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    {% else %}
+    <p class="muted map-empty">Set <code>map.url</code> in meta.yml to embed a map here.</p>
+    {% endif %}
+</section>
